@@ -13,9 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the entire app directory into /app/app
 COPY ./app ./app
 
-EXPOSE 5432
+EXPOSE 8080
 
 # Set PYTHONPATH to /app so that 'import app.xxx' works
 ENV PYTHONPATH=/app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5432"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]

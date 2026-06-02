@@ -1,8 +1,8 @@
 fastapi==0.111.0
 uvicorn==0.30.1
-langgraph==0.0.66
-langchain-google-genai==1.0.6
-langchain-core==0.2.10
+langgraph
+langchain-groq
+langchain-core
 pandas==2.2.2
 numpy==1.26.4
 python-dotenv==1.0.1

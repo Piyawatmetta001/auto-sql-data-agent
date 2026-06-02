@@ -19,15 +19,18 @@ class QueryRequest(BaseModel):
 
 @app.post("/analyze")
 async def analyze_data(request: QueryRequest):
+    print(f"--- Received Request: {request.query} ---")
     try:
         # Initialize state with the user's query
-        inputs = {"message": [HumanMessage(content=request.query)]}
+        inputs = {"messages": [HumanMessage(content=request.query)]}
         
-        # Run the agent
-        result = app_agent.invoke(inputs)
+        print("--- Invoking Agent ---")
+        # Run the agent with a recursion limit to prevent infinite loops
+        result = app_agent.invoke(inputs, config={"recursion_limit": 10})
+        print("--- Agent Execution Finished ---")
         
         # Get the last message from the result
-        final_message = result["message"][-1]
+        final_message = result["messages"][-1]
         
         return {
             "status": "success", 
